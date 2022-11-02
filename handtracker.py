@@ -1,7 +1,7 @@
 import mediapipe as mp
 import cv2 as cv
 import time
-
+import math
 ###################
 ###################
 class HandsDetector():
@@ -41,8 +41,14 @@ class HandsDetector():
                 LmList.append([id , lm.x , lm.y])
         return LmList
                 
+    def FindDistance(self , mylist , n , m):
+        if len(mylist) != 0:
+            x_n , y_n = mylist[n][1] , mylist[n][2]
+            x_m , y_m = mylist[m][1] , mylist[m][2]
+            
+            return math.sqrt((x_n - x_m) ** 2 + (y_n - y_m) ** 2)
+        return 0
     
-
 
 
 def main():
